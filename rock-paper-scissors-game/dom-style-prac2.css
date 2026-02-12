@@ -9,11 +9,11 @@ body {
     text-align: center;
 }
 .user {
-    text-align: left;
+    text-align: center;
     margin: auto;
 }
 .computer {
-    text-align: right;
+    text-align: center;
     margin: auto;
 }
 .hands {
