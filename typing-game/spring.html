@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タイピングゲーム</title>
+    <link rel="stylesheet" href="spring.css">
+</head>
+
+<body id="spring">
+    <p id="notice">※始める前にキーボード入力の設定が半角英数字になっていることを確認してください。</p>
+    <div class="startoverlay" id="startpopupOverlay">
+        <div class="startpopup">
+            <h1 id="fading-text">難易度を選択してください</h1>
+            <button type="button" id="easy" class="difficulty">簡単</button>
+            <button type="button" id="normal" class="difficulty">普通</button>
+            <button type="button" id="hard" class="difficulty">難しい</button>
+        </div>
+    </div>
+    <div class="gameoverlay" id="presspopupOverlay">
+        <div class="presspopup">
+            <h1 id="press-text">Press SpaceKey</h1>
+        </div>
+    </div>
+    <div class="gameoverlay" id="countpopupOverlay">
+        <div class="countpopup">
+            <p id="count"></p>
+        </div>
+    </div>
+    <div class="gameoverlay" id="gamepopupOverlay">
+        <div class="gamepopup">
+            <p id="theme"></p>
+            <input type="text" id="input_field" name="input">
+            <p id="rest">残り時間:60秒</p>
+            <p id="mistake">ミスタイプ数:0</p>
+            <button type="button" id="pause">一時停止</button>
+        </div>
+    </div>
+    <div class="gameoverlay" id="pausepopupOverlay">
+        <div class="pausepopup">
+            <button type="button" id="resume">再開</button>
+            <button type="button" id="top">TOPに戻る</button>
+        </div>
+    </div>
+    <div class="gameoverlay" id="resultpopupOverlay">
+        <div class="resultpopup">
+            <h1>タイピング結果</h1>
+            <p id="missRest"></p><br>
+            <button type="button" id="once">もう一度プレイする</button>
+            <button type="button" id="return">TOPへ戻る</button>
+        </div>
+    </div>
+    <a href="../index.html" class="back-btn">ポートフォリオTOPへ戻る</a>
+    <script type="text/javascript" src="spring.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+main {
+    padding: 0.5rem;
+}
+
+.back-btn {
+    background: #4e73df;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 下方向に影をつけて立体感を出す */
+    transition: 0.2s; /* ホバー時の変化を0.2秒でなめらかに */
+    display: inline-block; /* paddingやtransformを有効にする */
+}
+
+.back-btn:hover {
+  background: #2e59d9;
+  transform: translateY(-2px);
+}

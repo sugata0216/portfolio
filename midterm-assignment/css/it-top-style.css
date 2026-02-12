@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+main {
+    width: 50%;
+    margin: auto;
+}
+
+.frame {
+    margin-bottom: 2rem;
+    display: flow-root;
+}
+
+table,
+th,
+td {
+    border: solid 1px teal;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+th,
+td {
+    padding: 10px;
+}
+
+table {
+    margin-bottom: 20px;
+}
+
+.float-left {
+    width: 50%;
+    margin: 0 1rem;
+    float: left; /* 左に回り込み */
+}
+
+h1 {
+    margin-bottom: 0.8rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-top: solid purple 5px;
+}
+
+.frame p {
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+}
+
+.list2 {
+    list-style-image: url(../it/it-img/star.gif);
+}

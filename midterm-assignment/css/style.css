@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+body {
+    font-family: "Zen Maru Gothic", serif; /* フォントを「Zen Maru Gothic」に指定 読み込んでいない場合は serif（明朝系）を代替表示 */
+    font-weight: 400;
+    font-style: normal;
+    min-width: 700px;
+}
+
+header {
+    background-color: lightsteelblue;
+    padding: 0.5rem;
+}
+
+header {
+    width: 100%;
+}
+
+header ul {
+    display: flex;
+    list-style: none; /* ●を消す */
+    padding: 0px;
+}
+
+header ul li {
+    width: 20%;
+    text-align: center;
+}
+header ul li a {
+    display: block;
+    padding: 0.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* 2つ目以降のliに左線をつける */
+header ul li+li {
+    border-left: 2px solid paleturquoise;
+}
+/* パンくずリスト */
+.breadcrumbs {
+    list-style: none;
+    display: flex;
+}
+/* 各項目の後ろに「>」を追加 */
+.breadcrumbs li::after {
+    content: ">";
+    padding: 0 0.5rem;
+}
+/* 最後の項目だけ「>」を消す */
+.breadcrumbs li:last-child::after {
+    content: "";
+}
+
+.breadcrumbs li a:hover {
+    text-decoration: none;
+}
+/* 画像枠 */
+.image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+/* 画像を枠いっぱいに */
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 縦横比を保ったまま収める */
+}
+/* 右下のページトップに戻るボタン */
+.page_top {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background: peru;
+    opacity: 0.6;
+}
+
+.page_top a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+}
+
+.page_top a::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f062'; /* 上矢印アイコン */
+    font-size: 25px;
+    color: aliceblue;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    bottom: 10px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+}

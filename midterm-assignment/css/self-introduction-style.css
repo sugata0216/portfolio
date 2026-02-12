@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.mark-list {
+    list-style: "★"; /* リストの先頭記号を「★」に変更 */
+}
+
+main {
+    padding: 1rem;
+}
+
+.q_and_a {
+    border-bottom: 1px solid yellowgreen;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.answer {
+    padding: 0.2rem;
+    color: orange;
+    margin-right: 0.5rem;
+}

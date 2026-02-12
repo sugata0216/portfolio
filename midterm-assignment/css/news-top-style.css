@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+span {
+    font-size: 25px;
+}
+
+.recently,
+.explanation {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 30px;
+}

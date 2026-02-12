@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+main {
+    width: 50%;
+    margin: 30px auto;
+}
+
+.company {
+    border-top: 1px solid red;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+.company_link {
+    text-decoration: none;
+}
+.content {
+    border-radius: 6px;
+    padding: 0.2rem;
+    margin-right: 0.5rem;
+}
+
+.company_profile {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.company_profile th {
+  width: 30%;
+  text-align: left;
+  padding: 8px;
+  background: #f5f5f5;
+  vertical-align: top;
+}
+
+.company_profile td {
+  padding: 8px;
+}
+.sns-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin-right: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s; /* ホバーしたときにアニメーションのように見せるため(これがあればホバーした際にゆっくり浮き上がる) */
+}
+
+.sns-btn i {
+    font-size: 18px;
+}
+
+.sns-btn.x {
+    background-color: #000;
+}
+
+.sns-btn.instagram {
+    /* Instagran特有のグラデーションカラー */
+    background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+}
+
+.sns-btn:hover {
+    transform: translateY(-3px); /* ホバーしたときに少し浮き上がる */
+    opacity: 0.85; /* 少し透明に */
+}
+
+.list li {
+    margin: 0.5em 0;
+}
