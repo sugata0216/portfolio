@@ -164,20 +164,8 @@
     left: 0;
 }
 .back-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #4e73df;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: 0.2s;
-}
-
-.back-btn:hover {
-  background: #2e59d9;
-  transform: translateY(-2px);
+    position: fixed;
+    bottom: 20px; /* 下からの距離 */
+    left: 20px;   /* 左からの距離 */
+    z-index: 1000; /* 他の要素より前に出す */
 }
