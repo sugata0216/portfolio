@@ -1,0 +1,172 @@
+/* 全体 */
+:root {
+    --main-color: #667eea;
+    --accent-color: #764ba2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    /* ブラウザのデフォルト余白を除去 */
+    margin: 0;
+    background: #f5f5f5;
+    line-height: 1.7;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+/* ボタン */
+.button {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+/* ヘッダー */
+header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    /* テキストを白色に */
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* プロフィール */
+.profile {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.profile img {
+    width: 120px;
+    /* 画像を円形に切り抜く */
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+/* セクション共通 */
+section {
+    /* 各セクションに内側の余白を追加 */
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 100px auto;
+    scroll-margin-top: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 学習してきたプログラミング言語 */
+.programming_language {
+    text-align: center;
+}
+
+.programming_language ul {
+    /* 箇条書き記号をテキストの内側に配置 */
+    list-style-position: inside;
+    /* リストのデフォルト余白を除去 */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.programming_language li {
+    /* 各項目の上下に5pxの余白 */
+    margin: 5px 0;
+    background: #667eea;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.programming_language li:hover {
+    transform: translateY(-3px);
+    background: #764ba2;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    section {
+        padding: 30px 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .profile img {
+        /* 画面幅768px以下で画像を100pxに縮小 */
+        width: 100px;
+    }
+}
