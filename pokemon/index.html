@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- 文字コードをUTF-8に設定(日本語対応) -->
+    <meta charset="UTF-8">
+    <!-- スマホでも適切に表示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ブラウザのタブに表示されるタイトル -->
+    <title>好きなポケモン紹介</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../common.css">
+</head>
+<body>
+    <header>
+        <h1>好きなポケモン紹介</h1>
+    </header>
+    <input type="text" id="search" placeholder="ポケモンを検索...">
+    <div class="filters">
+        <button data-filter="all" class="active">すべて</button>
+        <button data-filter="normal">ノーマル</button>
+        <button data-filter="water">みず</button>
+        <button data-filter="grass">くさ</button>
+        <button data-filter="fighting">かくとう</button>
+        <button data-filter="poison">どく</button>
+        <button data-filter="psychic">エスパー</button>
+        <button data-filter="dragon">ドラゴン</button>
+        <button data-filter="steel">はがね</button>
+        <button data-filter="fairy">フェアリー</button>
+    </div>
+    <main>
+        <div id="error" class="error hidden">
+            <p>⚠ データの取得に失敗しました</p>
+            <button id="retry-btn">再試行</button>
+        </div>
+        <section class="card-container" id="card-container">
+            <!-- JSで生成 -->
+        </section>
+        <div class="pagination">
+            <button id="prev">←</button>
+            <span id="page-info"></span>
+            <button id="next">→</button>
+        </div>
+        <a href="../index.html" class="back-btn">ポートフォリオTOPへ戻る</a>
+    </main>
+    <footer>
+        <p>© My Pokemon Page</p>
+    </footer>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modal-img" src="" alt="">
+            <h2 id="modal-name"></h2>
+            <p id="modal-type"></p>
+        </div>
+    </div>
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+    </div>
+    <script type="text/javascript" src="index.js" defer></script>
+</body>
+</html>
