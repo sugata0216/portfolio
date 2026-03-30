@@ -1,0 +1,440 @@
+/* 全体 */
+body {
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #eef7f0, #f8fbf9);
+    text-align: center;
+    margin: 0;
+    text-align: center;
+}
+
+/* ヘッダー */
+header {
+    background-color: #66bb6a;
+    padding: 20px;
+    color: white;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 20px;
+    color: #2e7d32;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+p {
+    font-size: 14px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#search {
+    width: 90%;
+    max-width: 400px;
+    padding: 14px 20px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 999px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    outline: none;
+    transition: 0.3s;
+    background: white;
+}
+
+#search:focus {
+    box-shadow: 0 0 0 4px rgba(102,187,106,0.2);
+}
+
+.filters {
+    margin: 20px;
+}
+
+.filters button {
+    margin: 5px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 999px;
+    background: #f1f1f1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filters button.active {
+    color: white;
+    background: linear-gradient(135deg, #66bb6a, #43a047);
+    transform: scale(0.95);
+}
+
+.filters button:hover {
+    background-color: #bbb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* コンテナ */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    /* 中央寄せ */
+    margin: 0 auto;
+}
+
+/* カード */
+.card {
+    background: white;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.25s ease;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    border-top: 6px solid #ccc;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* ホバーで浮く */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+/* 上にうっすら光 */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+/* 画像 */
+.card img {
+    width: 120px;
+    height: 120px;
+    transition: transform 0.4s ease;
+    margin-bottom: 10px;
+}
+
+.card:hover img {
+    transform: scale(1.08) rotate(1deg);
+}
+
+.info p {
+    margin: 5px 0;
+}
+
+.info span {
+    font-weight: bold;
+    color: #388e3c;
+}
+
+/* お気に入り */
+.card .fav-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-size: 22px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 10;
+}
+
+.fav-btn:hover {
+    transform: scale(1.2);
+}
+
+.fav-btn.active {
+    color: #ff4d4d;
+    animation: pop 0.3s ease;
+    transform: scale(1.2);
+}
+
+@keyframes pop {
+    0% {transform: scale(0.8);}
+    50% {transform: scale(1.3);}
+    100% {transform: scale(1);}
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* モーダル全体 */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    backdrop-filter: blur(8px);;
+    z-index: 1000;
+}
+
+/* 中身 */
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 閉じるボタン */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 画像 */
+#modal-img {
+    width: 150px;
+    height: 150px;
+}
+
+.modal .fav-btn {
+    display: none !important;
+}
+
+/* ローディング全体 */
+.loading {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    transition: opacity 0.3s;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 非表示 */
+.hidden {
+    display: none;
+}
+
+/* スピナー */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ccc;
+    border-top: 5px solid #66bb6a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* 回転アニメーション */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* エラーUI */
+.error {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 400px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.error p {
+    margin-bottom: 15px;
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+#error button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #66bb6a;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#error button:hover {
+    background: #4daf50;
+}
+
+.hidden {
+    display: none;
+}
+
+/* スケルトン */
+.skeleton {
+    background: #eee;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 光のアニメーション */
+.skeleton::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.6),
+        transparent
+    );
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 150%;
+    }
+}
+
+/* パーツ */
+.skeleton-img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 10px;
+}
+
+.skeleton-text {
+    height: 16px;
+    margin: 10px 0;
+}
+
+.skeleton-small {
+    height: 12px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.pagination {
+    margin: 20px;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 20px;
+    background: #66bb6a;
+    color: white;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* スマホ */
+@media (max-width: 600px) {
+    .card-container {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    #search {
+        width: 80%;
+    }
+
+    .modal-content {
+        width: 80%;
+    }
+}
