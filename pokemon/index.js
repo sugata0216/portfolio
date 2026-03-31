@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             showSkeleton();
             hideError();
-            console.log("開始");
             container.innerHTML = "";
                 const detailedData = await Promise.all(
                     pokemonList.map(async (name) => {
@@ -67,14 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
                 allPokemon = detailedData;
                 render();
+                testFetch(allPokemon);
+                runTests(allPokemon);
         } catch (error) {
             container.innerHTML = "取得に失敗しました";
-            console.error("エラー詳細:", error);
             showError();
             alert("ポケモンの取得に失敗しました");
         } finally {
             setTimeout(hideLoading, 300);
-            console.log("終了");
         }
     }
     // 描画
@@ -129,7 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // お気に入り
         const favBtn = card.querySelector(".fav-btn");
         favBtn.addEventListener("click", (e) => {
-            console.log("♥クリック");
             e.stopPropagation();
             if (favorites.includes(name)) {
                 favorites = favorites.filter(f => f !== name);
@@ -144,10 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("click", (e) => {
             const isFav = e.target.closest(".fav-btn");
             if (isFav) {
-                console.log("ハート経由なのでモーダル開かない");
                 return;
             }
-            console.log("カードクリック");
             showModal(pokemon);
         });
         return card;
@@ -155,6 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // モーダル
     function showModal(pokemon) {
         const modal = document.querySelector(".modal");
+        if (!modal) {
+            console.error("モーダル要素が存在しない");
+            return;
+        }
         const modalImg = document.getElementById("modal-img");
         const modalName = document.getElementById("modal-name");
         const modalType = document.getElementById("modal-type");
@@ -165,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const favBtn = modal.querySelector(".fav-btn");
         if (favBtn) favBtn.style.display = "none";
         modal.style.display = "flex";
+        console.assert(modal.style.display === "flex");
     }
     function showError() {
         errorUI.classList.remove("hidden");
@@ -209,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // フィルター
     filterButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            console.log("クリック", btn.dataset.filter);
             setActiveFilter(btn.dataset.filter);
         });
     });
