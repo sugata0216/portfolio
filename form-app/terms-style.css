@@ -1,12 +1,50 @@
 @charset "utf-8";
+/* 基本スタイル(PC) */
 body {
     max-width: 800px;
-    margin: 2rem auto;
+    margin: auto;
     line-height: 1.8;
+    font-family: sans-serif;
+    padding: 40px;
+    color: #333;
 }
+/* 見出し */
 h1 {
     text-align: center;
+    margin-bottom: 30px;
 }
+
 h2 {
-    margin-top: 2rem;
+    margin-top: 30px;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+}
+
+/* 段落 */
+p {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+/* タブレット・スマホ(768px以下) */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    ul {
+        font-size: 14px;
+    }
 }

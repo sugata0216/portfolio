@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f5f5f5;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    /* 周囲に薄い影 */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 90%;
+}
+
+h2 {
+    text-align: center;
+}
+
+.checkbox-label {
+    display: inline-flex;
+    margin-top: 10px;
+    align-items: center;
+    gap: 6px;
+}
+
+.checkbox-label span {
+    white-space: nowrap;
+}
+
+.checkbox-label input {
+    /* 余計な余白をリセット */
+    margin: 0;
+}
+
+/* テキスト入力だけに適用 */
+input[type="text"], 
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    outline: 2px solid #4CAF50;
+    background: #f0fff0;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+@media (max-width: 480px) {
+    .checkbox-label span {
+        white-space: normal;
+    }
+}

@@ -1,12 +1,39 @@
 /* このCSSファイルの文字コードをUTF-8に指定 */
 @charset "utf-8";
 
+/* 基本スタイル */
+body {
+    font-family: sans-serif;
+    padding: 16px;
+    margin: 0;
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
 form {
     margin: 1.5rem; /* ルート要素のフォントサイズ基準で相対的にサイズを指定 */
 }
 
 fieldset {
     margin: 1.5rem;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: 2px solid #007bff;
 }
 
 input[type] {
@@ -17,23 +44,57 @@ input[type="password"] {
     border: 1px red solid;
 }
 
+/* ラジオ・チェックボックスは例外 */
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+}
+
+/* フィールドセット */
+fieldset {
+    margin-top: 20px;
+    padding: 15px;
+}
+
 a {
     font-size: 0.7rem;
 }
-
+/* ボタン */
 button {
     min-width: 140px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
 }
 
+button[type="submit"] {
+    background: #007bff;
+    color: white;
+}
+
+button:disabled {
+    background: #ccc;
+}
+
+/* 必須マーク */
 .required {
     color: red;
     font-weight: bold;
     margin: 0 0.5em;
 }
 
+/* テーブル */
 .form-table {
     width: 100%;
     border-collapse: collapse;
+}
+
+.form-table th,
+.form-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
 }
 
 .form-table th {
@@ -46,6 +107,7 @@ button {
 
 .form-table td {
     padding: 8px;
+    margin: 0 auto;
 }
 
 .form-table input[type="text"],
@@ -54,6 +116,64 @@ button {
 .form-table input[type="password"],
 .form-table input[type="number"],
 .form-table input[type="date"] {
-    width: 100%;
     box-sizing: border-box;
+}
+
+/* スマホ対応(768px以下) */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    /* テーブル→縦並び */
+    .form-table,
+    .form-table tbody,
+    .form-table tr,
+    .form-table th,
+    .form-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .form-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #f9f9f9;
+        overflow: hidden;
+    }
+
+    .form-table th {
+        background: none;
+        border: none;
+        padding-bottom: 5px;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .form-table td {
+        border: none;
+        padding: 5px 0;
+    }
+
+    /* ボタンを縦並び */
+    button {
+        width: 100%;
+    }
+
+    /* チェックボックス・ラジオを見やすく */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    /* エラーメッセージ */
+    #errorMessages {
+        padding-left: 0;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .form-table th {
+        width: 30%;
+    }
 }

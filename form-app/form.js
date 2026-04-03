@@ -7,14 +7,28 @@ const errorList = document.getElementById("errorMessages");
 const submitBtn = document.getElementById("submitBtn");
 // 利用規約チェックボックスを取得
 const terms = document.getElementById("terms");
-
-/* 規約チェックで送信ボタンON */
-terms.addEventListener("change", () => {
-  // checked が true なら disabled = false
-  // checked が false なら disabled = true
+function updateSubmitButton() {
   submitBtn.disabled = !terms.checked;
+}
+window.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("formData");
+  if (saved) {
+    const data = JSON.parse(saved);
+    form.last_name.value = data.lastName || "";
+    form.first_name.value = data.firstName || "";
+    form.address.value = data.address || "";
+    form.email.value = data.email || "";
+    form.tel.value = data.tel || "";
+    form.birthday.value = data.birthday || "";
+    form.age.value = data.age || "";
+    // 規約
+    form.terms.checked = data.terms || false;
+  }
+  updateSubmitButton();
 });
 
+/* 規約チェックで送信ボタンON */
+terms.addEventListener("change", updateSubmitButton);
 form.addEventListener("submit", e => {
   // ページリロードを止める
   e.preventDefault();
@@ -86,4 +100,21 @@ form.addEventListener("submit", e => {
   localStorage.setItem("formData", JSON.stringify(data));
   // confirm.htmlへページ遷移
   location.href = "confirm.html";
+});
+form.addEventListener("input", () => {
+  const data = {
+    lastName: form.last_name.value,
+    firstName: form.first_name.value,
+    address: form.address.value,
+    email: form.email.value,
+    tel: form.tel.value,
+    birthday: form.birthday.value,
+    age: form.age.value,
+    gender: form.gender.value || "",
+    magazine: [...form.magazine]
+      .filter(c => c.checked)
+      .map(c => c.value),
+    terms: form.terms.checked
+  };
+  localStorage.setItem("formData", JSON.stringify(data));
 });
