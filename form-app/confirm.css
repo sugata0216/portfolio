@@ -1,15 +1,32 @@
-@charset "utf-g";
+@charset "utf-8";
+/* 全体 */
+body {
+  font-family: sans-serif;
+  margin: auto;
+  padding: 16px;
+  max-width: 800px;
+}
+
+/* タイトル */
+h1 {
+  text-align: center;
+  font-size: 24px;
+}
+
 /* 確認画面用テーブル全体の設定 */
 .confirm-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .confirm-table th,
 .confirm-table td {
   border: 1px solid #ccc;
   padding: 10px;
+  /* 長い文字対策 */
+  word-break: break-word;
 }
 
 .confirm-table th {
@@ -17,13 +34,63 @@
   background-color: #f5f5f5;
   text-align: left;
 }
+
 /* ボタンを配置するエリアの設定 */
 .button-area {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
+  margin-top: 20px;
 }
+
 /* ボタン共通のサイズ調整 */
 .btns {
-    min-width: 140px; /* 文字数が少なくてもボタンサイズを揃えられる */
+  /* 文字数が少なくてもボタンサイズを揃えられる */
+    min-width: 140px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* スマホ対応(768px以下) */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  /* テーブルを縦並びに変換 */
+  .confirm-table,
+  .confirm-table tbody,
+  .confirm-table tr,
+  .confirm-table th,
+  .confirm-table td {
+    display: block;
+    width: 90%;
+    margin: auto;
+  }
+
+  .confirm-table tr {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .confirm-table th {
+    font-weight: bold;
+    background: #f5f5f5;
+  }
+
+  .confirm-table td {
+    border: none;
+    padding: 5px 0;
+  }
+
+  /* ボタン縦並び */
+  .button-area {
+    flex-direction: column;
+  }
+
+  .btns {
+    width: 100%;
+  }
 }

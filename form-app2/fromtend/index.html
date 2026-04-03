@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせフォーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>お問い合わせ</h2>
+        <form action="#" method="post" id="contactForm">
+            <!-- 入力欄 -->
+            <label for="name">名前 <span>※必須</span></label>
+            <!-- name属性がないとel.nameが空になり正しく保存されない -->
+            <input type="text" name="name" id="name" placeholder="山田 太郎" aria-describedby="nameError" required>
+            <p class="error" id="nameError"></p>
+            <label for="email">メールアドレス <span>※必須</span></label>
+            <input type="email" name="email" id="email" placeholder="example@mail.com" aria-describedby="emailError" required>
+            <p class="error" id="emailError"></p>
+            <label for="message">お問い合わせ内容 <span>※必須</span></label>
+            <textarea name="message" rows="5" id="message" placeholder="修理をお願いしたいです。" aria-describedby="messageError" required></textarea>
+            <p class="error" id="messageError"></p>
+            <label class="checkbox-label">
+                <input type="checkbox" id="agree" name="agree" aria-describedby="agreeError">
+                <span>利用規約に同意する <span>※必須</span></span>
+            </label>
+            <p class="error" id="agreeError"></p>
+            <button type="submit" id="confirmBtn" disabled>
+                確認画面へ
+            </button>
+        </form>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
