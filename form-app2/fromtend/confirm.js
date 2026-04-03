@@ -31,7 +31,7 @@ btn.addEventListener("click", async () => {
     btn.style.display = "none";
     loading.style.display = "block";
     try {
-        const response = await fetch("https://localhost:3000/api/contact", {
+        const response = await fetch("https://portfolio-3asr.onrender.com/api/contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
