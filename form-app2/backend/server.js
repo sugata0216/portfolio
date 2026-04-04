@@ -10,8 +10,14 @@ let contacts = [];
 app.post("/api/contact", (req, res) => {
     const { name, email, message } = req.body;
     // バリデーション
-    if (!name || !email || !message) {
-        return res.status(400).json({ error: "入力不正"});
+    if (typeof name !== "string" || name.trim() === "") {
+        return res.status(400).json({ error: "名前不正"});
+    }
+    if (typeof email !== "string" || email.trim() === "") {
+        return res.status(400).json({ error: "メールアドレス不正"});
+    }
+    if (typeof message !== "string" || message.trim() === "") {
+        return res.status(400).json({ error: "お問い合わせ内容不正"});
     }
     const newContact = {
         // 現在時刻をミリ秒で一意なIDとして使用
