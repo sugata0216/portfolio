@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>確認画面</title>
+    <link rel="stylesheet" href="confirm.css">
 </head>
 <body>
-    <h2>確認画面</h2>
-    <p>名前: <span id="name"></span></p>
-    <p>メール: <span id="email"></span></p>
-    <p>内容: <span id="message"></span></p>
-    <button onclick="history.back()">戻る</button>
-    <button id="submitBtn">送信</button>
-    <p id="loading" style="display:none;">送信中...</p>
+    <div class="container">
+        <h2>確認画面</h2>
+        <p>※送信に時間がかかる場合があります。</p>
+        <div class="field">
+            <span class="label">名前</span>
+            <span id="name" class="value"></span>
+        </div>
+        <div class="field">
+            <span class="label">メール</span>
+            <span id="email" class="value"></span>
+        </div>
+        <div class="field">
+            <span class="label">お問い合わせ内容</span>
+            <span id="message" class="value"></span>
+        </div>
+        <div class="buttons">
+            <button onclick="history.back()" class="back">戻る</button>
+            <button id="submitBtn" class="submit">送信</button>
+        </div>
+        <p id="loading" class="loading" style="display: none;">送信中...</p>
+    </div>
     <script type="text/javascript" src="confirm.js"></script>
 </body>
 </html>

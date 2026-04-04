@@ -3,30 +3,45 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background-color: #f5f5f5;
-}
-
-.form-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    /* 周囲に薄い影 */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 90%;
+    margin: 0;
 }
 
 h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
     text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+label span {
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.form-container {
+    max-width: 480px;
+    margin: 80px auto;
+    padding: 32px;
+    background: white;
+    border-radius: 16px;
+    /* 周囲に薄い影 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 90%;
 }
 
 .checkbox-label {
     display: inline-flex;
-    margin-top: 10px;
+    margin-top: 16px;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    font-size: 14px;
 }
 
 .checkbox-label span {
@@ -36,6 +51,8 @@ h2 {
 .checkbox-label input {
     /* 余計な余白をリセット */
     margin: 0;
+    width: 16px;
+    height: 16px;
 }
 
 /* テキスト入力だけに適用 */
@@ -43,36 +60,94 @@ input[type="text"],
 input[type="email"],
 textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+    padding: 12px;
+    margin-top: 6px;
     box-sizing: border-box;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
 }
 
 input:focus, textarea:focus {
-    outline: 2px solid #4CAF50;
+    outline: none;
     background: #f0fff0;
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
 }
 
 button {
-    margin-top: 15px;
+    margin-top: 24px;
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: all 0.2s ease;
 }
 
 button:hover {
     background: #45a049;
 }
 
+button:disabled {
+    background: #c7d2fe;
+    cursor: not-allowed;
+}
 .error {
     color: red;
     font-size: 12px;
+    margin-top: 4px;
+}
+
+/* 背景 */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    transition: background 0.3s ease;
+}
+
+/* モーダル本体 */
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    /* 初期状態 */
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* 表示状態 */
+.modal.show {
+    display: flex;
+    background: rgba(0,0,0,0.5);
+    pointer-events: auto;
+}
+
+/* 表示時 */
+.modal.show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.35s cubic-bezier(0.25, 1.5, 0.5, 1);
 }
 
 @media (max-width: 480px) {
+    .form-container {
+        padding: 20px;
+    }
+
     .checkbox-label span {
         white-space: normal;
     }

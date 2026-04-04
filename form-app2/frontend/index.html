@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせフォーム</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../common.css">
 </head>
 <body>
     <div class="form-container">
@@ -23,7 +24,9 @@
             <p class="error" id="messageError"></p>
             <label class="checkbox-label">
                 <input type="checkbox" id="agree" name="agree" aria-describedby="agreeError">
-                <span>利用規約に同意する <span>※必須</span></span>
+                <span>
+                    <a href="#" id="openTerms">利用規約</a>に同意する <span>※必須</span>
+                </span>
             </label>
             <p class="error" id="agreeError"></p>
             <button type="submit" id="confirmBtn" disabled>
@@ -31,6 +34,14 @@
             </button>
         </form>
     </div>
-    <script type="text/javascript" src="index.js"></script>
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <h2>利用規約</h2>
+            <p>ここに利用規約が入る...</p>
+            <button id="closeTerms">閉じる</button>
+        </div>
+    </div>
+    <a href="../../index.html" class="back-btn">ポートフォリオTOPへ戻る</a>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
