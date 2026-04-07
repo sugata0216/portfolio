@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Collection</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- フォント -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../common.css">
+</head>
+<body>
+    <header>
+        <h1>🎮 Game Collection</h1>
+        <div class="controls">
+            <input type="text" id="search" placeholder="ゲーム検索..." aria-label="ゲーム検索">
+            <!-- フィルター -->
+             <select id="filter" aria-label="ジャンル選択"></select>
+             <button id="fav-only" aria-pressed="false">🤍 すべて表示</button>
+        </div>
+    </header>
+    <main>
+        <p id="status-label"></p>
+        <!-- カード表示エリア -->
+        <div id="game-list" class="game-list"></div>
+    </main>
+    <a href="../index.html" class="back-btn">ポートフォリオTOPへ戻る</a>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

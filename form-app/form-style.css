@@ -166,9 +166,14 @@ button:disabled {
         display: block;
         margin-bottom: 5px;
     }
+
     /* エラーメッセージ */
     #errorMessages {
         padding-left: 0;
+    }
+
+    small {
+        font-size: 12px;
     }
 }
 
