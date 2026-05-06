@@ -1,13 +1,28 @@
 @charset "utf-8";
 
 main {
-    width: 50%;
-    margin: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .frame {
     margin-bottom: 2rem;
-    display: flow-root;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.frame p {
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+}
+
+.frame img {
+    max-width: 100%;
+    height: auto;
+    width: 300px;
 }
 
 table,
@@ -27,10 +42,11 @@ table {
     margin-bottom: 20px;
 }
 
+/* PC用(横に並べる) */
 .float-left {
-    width: 50%;
-    margin: 0 1rem;
-    float: left; /* 左に回り込み */
+    width: 100%;
+    margin-right: 15px;
+    float: none;
 }
 
 h1 {
@@ -43,11 +59,51 @@ h2 {
     border-top: solid purple 5px;
 }
 
-.frame p {
-    line-height: 1.6;
-    letter-spacing: 0.05em;
+h3 {
+    clear: both;
+}
+
+p {
+    line-height: 1.8;
 }
 
 .list2 {
     list-style-image: url(../it/it-img/star.gif);
+}
+
+/* スマホ */
+@media screen and (max-width: 768px) {
+    .float-left {
+        float: none;
+        display: block;
+        margin: 10px auto;
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    .frame {
+        flex-direction: column;
+    }
+
+    .frame img {
+        width: 100%;
+    }
 }

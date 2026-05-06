@@ -1,0 +1,1330 @@
+@charset "utf-8";
+/* 全体 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    background: linear-gradient(270deg, #0f172a, #1e293b, #0f172a);
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    background-size: 600% 600%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#app {
+    transition: opacity 0.4s ease;
+    opacity: 1;
+}
+
+/* フェードアウト */
+.page-out {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+/* フェードイン */
+.page-in {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: #0f0f0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.loader.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top: 4px solid #00c6ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* タイトル */
+h1 {
+    margin: 30px 0 10px;
+    text-align: center;
+    font-size: 28px;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(16px);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 検索ボックス */
+#search {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px 16px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+#search:focus {
+    background: rgba(255,255,255,0.2);
+    width: 350px;
+}
+
+/* ユーザーエリア */
+.user-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 20px;
+}
+
+#user-name {
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* ログイン・ログアウトボタン */
+#login-btn, #logout-btn {
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#login-btn {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+}
+
+#login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99,102,241,0.6);
+}
+
+#logout-btn {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+
+#logout-btn:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* お気に入りフィルターボタン */
+#filter-fav {
+    display: block;
+    margin: 8px auto;
+    padding: 8px 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.05);
+}
+
+#filter-fav:hover {
+    background: rgba(255,100,100,0.2);
+    border-color: rgba(255,100,100,0.4);
+    transform: translateY(-2px);
+}
+
+#filter-fav.active {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+}
+
+.logged-in {
+    color: #00ffcc;
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.form input,
+.form textarea {
+    background: #2c2c2e;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    color: #fff;
+    width: 100%;
+    margin-bottom: 12px;
+    outline: none;
+}
+
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+/* ファイル選択 */
+#image-file {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #2c2c2e;
+    color: #aaa;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#file-select-btn {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: 0.2s;
+    width: auto;
+}
+
+#file-selector-btn:hover {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    transform: translateY(-2px);
+}
+
+#file-name {
+    font-size: 13px;
+    color: #aaa;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+#skip-crop {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+#skip-crop:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+.form button {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: none;
+    padding: 10px;
+    border-radius: 999px;
+    width: 100%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.floating-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(99,102,241,0.6);
+    transition: transform 0.2s ease;
+    animation: pulse 2s infinite;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+.floating-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.form-modal-content {
+    width: 400px;
+    background: rgba(30,30,30,0.9);
+    border-radius: 20px;
+    padding-top: 56px;
+    animation: scaleIn 0.3s ease;
+    position: relative;
+    max-width: 90%;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
+    transform: translateY(80px) scale(0.95);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(.2,.8,.2,1);
+}
+
+#close-form {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    z-index: 100;
+    background: rgba(255,255,255,0.1);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transform: none;
+}
+
+#close-form:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    min-height: 60px;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.error {
+    font-size: 12px;
+    color: #ff6b6b;
+    min-height: 18px;
+    transition: opacity 0.2s;
+    display: block;
+    line-height: 1.4;
+    height: 18px;
+    margin-bottom: 6px;
+    text-align: left;
+    padding-left: 4px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0,200,250,0.6);
+    transform: scale(1.02);
+}
+
+.input-error {
+    border: 1px solid #ff6b6b;
+}
+
+.input-ok {
+    border: 1px solid #00ffcc;
+}
+
+/* トースト */
+.toast {
+    position: fixed;
+    right: 30px;
+    background: #2c2c2e;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    transition: all .3s;
+    z-index: 9999;
+    bottom: 30px;
+    left: 50%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.success {
+    border-left: 4px solid #00ffcc;
+}
+
+.toast.error {
+    border-left: 4px solid #ff4d4d;
+}
+
+#form-modal {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+}
+
+#form-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#form-modal.show .form-modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+#form-modal.closing {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 閉じる */
+#form-modal.closing .form-modal-content {
+    transform: translateY(80px) scale(0.95);
+    opacity: 0;
+}
+
+/* カード一覧 */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* カード */
+.card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    position: relative;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s ease forwards;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    position: relative;
+    z-index: 1;
+    transform-style: preserve-3d;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0;}
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 画像 */
+.card img {
+    opacity: 0.9;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    height: 160px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card .info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 16px 10px;
+    background: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s;
+    left: 0;
+    right: 0;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+}
+
+/* ホバー */
+.card:hover {
+    transform: translateY(-6px);
+    background: #282828;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.card:active {
+    transform: scale(0.97);
+}
+
+.card:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* 曲名 */
+.info-title {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    display: block;
+}
+
+/* アーティスト */
+.info-artist {
+    font-size: 12px;
+    color: #dddddd;
+    padding: 0;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    opacity: 1 !important;
+    display: block;
+}
+
+.card:hover .info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card.show {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: 0.6s;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,0.8)
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card:hover::before {
+    opacity: 1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    animation: shine 0.6s;
+    transform: translateX(100%);
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* お気に入りボタン */
+.fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: black;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    opacity: 0.8;
+    transition: 0.3s;
+    z-index: 3;
+}
+
+.fav-btn.active {
+    color: red;
+    transform: scale(1.2);
+}
+
+/* 削除ボタン */
+.delete-btn {
+    background: rgba(220,38,38,0.8);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    opacity: 0;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+    z-index: 3;
+}
+
+.card:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    background: rgba(220,38,38,1);
+    transform: translateY(-2px);
+}
+
+/* 編集ボタン */
+.edit-btn { 
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(99,102,241,0.8);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+    z-index: 3;
+}
+
+.empty {
+    text-align: center;
+    opacity: 0.6;
+    font-size: 18px;
+    padding: 50px;
+    margin: 20px;
+    color: #aaa;
+}
+
+/* モーダル背景 */
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    inset: 0;
+    animation: fadeIn 0.2s ease;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    visibility: hidden;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }  
+}
+
+.modal.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+/* 閉じるアニメーション */
+.modal.closing {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal.closing .modal-content {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* 中身 */
+.modal-content {
+    background: rgba(30,30,30,0.8);
+    padding: 20px;
+    border-radius: 20px;
+    width: 90%;
+    text-align: center;
+    color: white;
+    max-width: 320px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    animation: scaleIn 0.3s ease;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: 0.3s;
+    touch-action: none;
+    overflow-y: auto;
+    height: auto;
+    z-index: 1;
+    backdrop-filter: blur(30px);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* モーダル画像 */
+.modal-content img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* YouTube */
+.modal-content iframe {
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+}
+
+.modal-content p {
+    opacity: 0.8;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+    animation: modalSpring 0.5s cubic-bezier(.17,.67,.3,1.33) forwards;
+}
+
+.modal.closing .modal-content {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+@keyframes modalSpring {
+    0% { transform: scale(0.7) translateY(80px); opacity: 0; }
+    60% { transform: scale(1.05) translateY(-10px); }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* 閉じるボタン */
+#close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+
+/* スクロールバー */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1db954;
+    border-radius: 10px;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transform: scale(0);
+    animation: rippleAnim 0.6s linear;
+}
+
+@keyframes rippleAnim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.crop-container {
+    width: 90%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.4),
+        inset 0 0 0 1px rgba(255,255,255,0.1);
+    overflow: hidden;
+    transition: 0.35s ease;
+}
+
+#crop-modal {
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+#crop-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#crop-modal.show .crop-container {
+    transform: translateY(0) scale(1);
+    animation: modalSpring 0.6s cubic-bezier(.18,1.25,.4,1);
+    opacity: 1;
+}
+
+@keyframes modalSpring {
+    0% {
+        transform: scale(0.8) translateY(60px);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.05) translateY(-10px);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.crop-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 16px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.crop-header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.crop-header button:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.crop-body {
+    height: 400px;
+    background: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+.crop-body img {
+    display: block;
+    width: 100%;
+}
+
+.crop-body:hover img {
+    transform: none;
+}
+
+/* Cropモーダル少し広め */
+.crop-modal-content {
+    max-width: 520px;
+    backdrop-filter: blur(30px);
+    width: 95%;
+    padding: 20px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.08);
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    animation: cropIn 0.45s cubic-bezier(.17,.67,.3,1.33);
+}
+
+@keyframes cropIn {
+    0% { transform: scale(0.8) translateY(40px); opacity: 0; }
+    60% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ボタン */
+#crop-btn {
+    background: #00c6ff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#crop-image {
+    width: 100%;
+    display: block;
+    max-height: none;
+    border-radius: 0;
+    max-width: 100%;
+}
+
+/* 暗いオーバーレイ */
+.cropper-view-box {
+    outline: 2px solid rgba(255,255,255,0.8);
+    border-radius: 16px;
+}
+
+/* 外側の暗さ */
+.cropper-face {
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* グリッド線 */
+.cropper-dashed {
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* 中央クロス */
+.cropper-center::before,
+.cropper-center::after {
+    background-color: rgba(255,255,255,0.5);
+}
+
+.cropper-point {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    box-shadow:
+        0 0 10px rgba(139,92,246,0.8),
+        0 0 20px rgba(99,102,241,0.5);
+    transition: transform 0.2s;
+}
+
+.cropper-point:hover {
+    transform: scale(1.4);
+}
+
+.cropper-hidden {
+    display: none !important;
+}
+
+.crop-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    gap: 10px;
+}
+
+/* 共通ボタン */
+.crop-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 999px;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* キャンセル */
+.crop-cancel {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+/* 決定 */
+.crop-confirm {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+}
+
+.crop-actions button:hover {
+    transform: translateY(-2px);
+}
+
+#preview {
+    margin-top: 12px;
+    position: relative;
+}
+
+#preview img {
+    width: 100%;
+    border-radius: 16px;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* 削除ボタン */
+#remove-img {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    cursor: pointer;
+}
+
+.crop-zoom {
+    margin-top: 10px;
+}
+
+.crop-zoom input[type="range"] {
+    width: 100%;
+    appearance: none;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.2);
+    outline: none;
+}
+
+/* スライダー */
+.crop-zoom input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #6366f1;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(99,102,241,0.8);
+}
+
+/* Cropperカスタム */
+.cropper-view-box,
+.cropper-face {
+    border-radius: 12px;
+}
+
+.cropper-line {
+    background: #fff;
+    width: 10px;
+    height: 10px;
+}
+
+.crop-footer {
+    display: flex;
+    gap: 10px;
+    padding: 16px;
+}
+
+/* ボタン共通 */
+.crop-footer button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+/* キャンセル */
+#cancel-crop {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+#cancel-crop :hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* メインボタン */
+.primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(102,126,234,0.6);
+}
+
+.primary::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: redial-gradient(circle, rgba(255,255,255,0.3), transparent);
+    top:-50%;
+    left: -50%;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.primary:hover::after {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.progress-wrapper {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.progress-wrapper.show {
+    opacity: 1;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    transition: width 0.2s ease;
+}
+
+#progress-text {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    font-size: 12px;
+}
+
+#confirm-message {
+    margin: 16px 0 24px;
+    font-size: 16px;
+}
+
+.confirm-choice {
+    display: flex;
+    gap: 10px;
+}
+
+#confirm-cancel {
+    flex: 1;
+    padding: 10px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    cursor: pointer;
+}
+
+#confirm-ok {
+    flex: 1;
+    padding: 10px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.card:hover .edit-btn {
+    opacity: 1;
+}
+
+.edit-btn:hover {
+    background: rgba(99,102,241,1);
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 480px) {
+    .form-modal-content {
+        width: 90%;
+        padding: 16px;
+    }
+
+    #close-form {
+        top: 8px;
+        right: 8px;
+    }
+
+    .floating-btn {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .container {
+        display: grid;
+        /* 1列 */
+        grid-template-columns: 1fr;
+        padding: 12px;
+        /* 中央揃え */
+        justify-items: center;
+    }
+
+    .card {
+        /* 横幅いっぱい */
+        width: 100%;
+        /* 最大幅 */
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        padding: 12px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card img {
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        opacity: 1;
+    }
+
+    .fav-btn {
+        opacity: 1;
+    }
+}

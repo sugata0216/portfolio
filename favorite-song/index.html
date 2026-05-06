@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おすすめ曲一覧</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../common.css">
+</head>
+<body>
+    <div id="loader" class="loader">
+        <h1>🎧 Loading...</h1>
+    </div>
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <p id="confirm-message">ログアウトしますか?</p>
+            <div class="confirm-choice">
+                <button id="confirm-cancel">キャンセル</button>
+                <button id="confirm-ok">はい</button>
+            </div>
+        </div>
+    </div>
+    <div id="app">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="logo">🎧 Sound Share</h1>
+        </header>
+        <!-- 検索 -->
+        <input type="text" id="search" placeholder="曲名・アーティストで検索">
+        <div class="user-area">
+            <p id="user-name"></p>
+            <button id="login-btn">ログイン</button>
+            <button id="logout-btn">ログアウト</button>
+        </div>
+        <button id="open-form-btn" class="floating-btn">+</button>
+        <button id="filter-fav">♥ お気に入り</button>
+        <!-- コンテンツ -->
+        <main class="main">
+            <div class="container" id="container"></div>
+        </main>
+        <!-- モーダル -->
+        <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-artist"></p>
+            <!-- YouTube再生 -->
+                <iframe id="youtube-player"
+                width="100%"
+                height="200"
+                src="" 
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+            <p id="modal-desc"></p>
+        </div>
+        </div>
+        <div id="form-modal" class="modal">
+            <div class="modal-content form-modal-content">
+                <span id="close-form">&times;</span>
+                <h2>曲を追加</h2>
+                <form id="add-form" class="form">
+                    <div class="form-group">
+                        <input type="text" id="title" placeholder="曲名" required>
+                        <p class="error" id="title-error"></p>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="artist" placeholder="アーティスト" required>
+                        <p class="error" id="artist-error"></p>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="video" placeholder="ID(YouTubeリンク下11桁)" required>
+                        <p class="error" id="video-error"></p>
+                    </div>
+                    <div class="file-input-wrapper">
+                        <button type="button" id="file-select-btn">📷 画像を選択</button>
+                        <span id="file-name">選択されていません</span>
+                        <input type="file" id="image-file" accept="image/*" hidden>
+                    </div>
+                    <textarea id="desc" placeholder="説明"></textarea>
+                    <div id="preview"></div>
+                    <button type="submit">追加</button>
+                </form>
+            </div>
+        </div>
+        <div id="crop-modal" class="modal">
+            <div class="crop-container">
+                <div class="crop-header">
+                    <h3>画像を調整</h3>
+                    <button id="close-crop">×</button>
+                </div>
+                <div class="crop-body">
+                    <img id="crop-image">
+                </div>
+                <div class="crop-footer">
+                    <button type="button" id="cancel-crop">キャンセル</button>
+                    <button type="button" id="skip-crop">そのまま使用</button>
+                    <button type="button" id="crop-btn" class="primary">切り抜く</button>
+                </div>
+            </div>
+        </div>
+        <div class="progress-wrapper" id="progress-wrapper">
+            <div class="progresspbar" id="progress-bar"></div>
+            <span id="progress-text">0%</span>
+        </div>
+    </div>
+    <a href="../index.html" class="back-btn">ポートフォリオTOPへ戻る</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

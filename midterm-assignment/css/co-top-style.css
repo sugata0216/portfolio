@@ -10,9 +10,11 @@ main {
     padding-top: 24px;
     padding-bottom: 24px;
 }
+
 .company_link {
     text-decoration: none;
 }
+
 .content {
     border-radius: 6px;
     padding: 0.2rem;
@@ -35,6 +37,21 @@ main {
 .company_profile td {
   padding: 8px;
 }
+
+.map-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .sns-btn {
     display: inline-flex;
     align-items: center;
